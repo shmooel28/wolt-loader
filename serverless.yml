@@ -1,0 +1,29 @@
+service: daily-script-runner
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  memorySize: 1024 # 1GB
+  profile: personal
+  region: us-east-1
+
+functions:
+  runDailyScript:
+    handler: main.run
+    timeout: 300 # 15 minutes
+    # events:
+    #   - schedule:
+    #       rate: cron(0 9 ? * SUN-THU *)  # 9:00 UTC = 12:00 Israel summer time
+    #       enabled: true
+
+package:
+  exclude:
+    - node_modules/**
+    - .git/**
+    - .serverless/**
+    - test.js
+    - README.md
+    - .env
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline

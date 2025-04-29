@@ -1,0 +1,6 @@
+node_modules
+.serverless
+.env
+/google-credentials.json
+/logfile.log
+wolt-cookies.json
