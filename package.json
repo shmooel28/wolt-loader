@@ -2,8 +2,9 @@
   "name": "waltloader",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "setup.js",
   "scripts": {
+    "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,18 +13,21 @@
   "dependencies": {
     "chrome-aws-lambda": "^10.1.0",
     "dotenv": "^16.5.0",
+    "electron": "^36.0.1",
     "googleapis": "^148.0.0",
     "jsdom": "^26.1.0",
     "nodemailer": "^6.10.1",
     "pdf-parse": "^1.1.1",
-    "puppeteer": "^24.7.2",
-    "puppeteer-core": "^24.7.2",
-    "puppeteer-extra": "^3.3.6",
-    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "playwright-aws-lambda": "^0.11.0",
+    "playwright-core": "^1.52.0",
     "serverless-dotenv-plugin": "^6.0.0"
   },
   "devDependencies": {
     "jest": "^29.7.0",
+    "puppeteer": "^24.7.2",
+    "puppeteer-core": "^24.7.2",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
     "serverless-offline": "^14.4.0"
   }
 }

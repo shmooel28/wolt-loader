@@ -128,6 +128,13 @@ const handleCibusPayment = async (page) => {
     console.log('Cibus login submitted.');
     await sleep(2000);
     await cibusWindow.waitForSelector('#btnPay', { timeout: 5000 }).catch(() => null);
+    const time = getIsraelTime();
+    console.log('Time:', time);
+    const isWithinRange = time >= 11 && time < 17;
+    if (!isWithinRange) {
+        console.log('Outside working hours, skipping payment.', time);
+        throw new Error('Outside working hours, skipping payment.');
+    }
     const balance = await getBalance(cibusWindow);
     if (balance > 0) {
         console.log('Proceeding with payment, balance:', balance);
@@ -179,6 +186,17 @@ const redeemGiftCard = async (page, giftCardCodes) => {
       await sleep(1000);
 
     }
+}
+
+const getIsraelTime = () => {
+    const now = new Date();
+    const israelTime = new Intl.DateTimeFormat('en-US', {
+      hour: '2-digit',
+      hour12: false,
+      timeZone: 'Asia/Jerusalem'
+    }).format(now);
+    const hour = parseInt(israelTime, 10);
+    return hour;
 }
 // Main function
 (async () => {
