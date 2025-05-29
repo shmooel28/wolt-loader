@@ -6,7 +6,7 @@ require('dotenv').config(); // Load environment variables
 
 const woltGiftCardUrl = "https://wolt.com/en/isr/tel-aviv/venue/woltilgiftcards";
 const woltRedeemCodeUrl = "https://wolt.com/en/me/redeem-code";
-const cookiesFilePath = 'wolt-cookies.json';
+const cookiesFilePath = 'cookies.json';
 const amountToBuy = 35;
 // Sleep helper
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
@@ -198,6 +198,11 @@ const getIsraelTime = () => {
     const hour = parseInt(israelTime, 10);
     return hour;
 }
+
+const saveCookies = async (page) => {
+    const cookies = await page.cookies();
+    fs.writeFileSync('cookies.json', JSON.stringify(cookies));
+}
 // Main function
 (async () => {
   puppeteer.use(StealthPlugin());
@@ -213,6 +218,7 @@ const getIsraelTime = () => {
     await proceedToCheckout(page);
     await sendOrder(page);
     await sleep(10000);
+    await saveCookies(page);
 
     const giftCardCodes = await getCodeFromMail();
     if (!giftCardCodes) {
