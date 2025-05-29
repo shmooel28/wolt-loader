@@ -120,8 +120,8 @@ const handleCibusPayment = async (page) => {
   const submitButton = await cibusWindow.waitForSelector('#btnSubmit').catch(() => null);
 
   if (usernameInput && passwordInput && submitButton) {
-    await cibusWindow.type('#txtUserName', process.env.SIBUS_EMAIL);
-    await cibusWindow.type('#txtPassword', process.env.SIBUS_PASSWORD);
+    await cibusWindow.type('#txtUserName', process.env.CIBUS_EMAIL);
+    await cibusWindow.type('#txtPassword', process.env.CIBUS_PASSWORD);
     console.log('Credentials filled.');
     await sleep(1000);
     await cibusWindow.evaluate(button => button.click(), submitButton);

@@ -44,8 +44,8 @@ Create a `.env` file in the root directory with the following content:
 ```env
 WOLT_EMAIL=wolt_email@example.com
 # Cibus login credentials
-SIBUS_EMAIL=your_cibus_email@example.com
-SIBUS_PASSWORD=your_cibus_password
+CIBUS_EMAIL=your_cibus_email@example.com
+CIBUS_PASSWORD=your_cibus_password
 
 # Gmail API credentials
 GMAIL_CLIENT_ID=your_google_client_id
